@@ -30,8 +30,7 @@ SELECT * FROM employees;
 -- Author : Vaishnavi Gavade
 
 -- 1.Display all employee records
-SELECT *
-FROM employees;
+SELECT *FROM employees;
 
 -- Question 2
 -- Display employee names
@@ -63,16 +62,14 @@ WHERE salary > 50000;
 
 -- Question 7
 -- Display employees whose salary is less than 60000
-SELECT *
-FROM employees
+SELECT *FROM employees
 WHERE salary < 60000;
 
 
 
 -- Question 8
 -- Display employees from IT department
-SELECT *
-FROM employees
+SELECT *FROM employees
 WHERE department = 'IT';
 
 -- Question 9
@@ -152,3 +149,101 @@ LIMIT 3;
 SELECT *
 FROM employees
 ORDER BY joining_date;
+
+
+-- 21
+SELECT *
+FROM employees
+WHERE salary > 50000;
+
+-- 22
+SELECT employee_name, salary
+FROM employees
+WHERE department = 'IT';
+
+-- 23
+SELECT *
+FROM employees
+WHERE age BETWEEN 25 AND 30;
+
+-- 24
+SELECT *
+FROM employees
+WHERE city = 'Mumbai';
+
+-- 25
+SELECT employee_name
+FROM employees
+ORDER BY employee_name ASC;
+
+-- 26
+SELECT *
+FROM employees
+ORDER BY salary DESC;
+
+-- 27
+SELECT *
+FROM employees
+ORDER BY salary DESC
+LIMIT 5;
+
+-- 28
+SELECT *
+FROM employees
+WHERE employee_name LIKE 'S%';
+
+-- 29
+SELECT *
+FROM employees
+WHERE employee_name LIKE '%a';
+
+-- 30
+SELECT *
+FROM employees
+WHERE employee_name LIKE '%n%';
+
+-- 31
+SELECT *
+FROM employees
+WHERE department IN ('HR', 'Finance');
+
+-- 32
+SELECT *
+FROM employees
+WHERE city <> 'Pune';
+
+-- 33
+SELECT *FROM employees
+WHERE salary NOT BETWEEN 40000 AND 60000;
+
+-- 34
+SELECT DISTINCT city
+FROM employees;
+
+-- 35
+SELECT employee_name, department, salary
+FROM employees;
+
+-- 36
+SELECT *
+FROM employees
+WHERE joining_date > '2023-01-01';
+
+-- 37
+SELECT *FROM employees
+ORDER BY joining_date DESC;
+
+-- 38
+SELECT *FROM employees
+WHERE salary > 45000
+AND department = 'IT';
+
+-- 39
+SELECT *FROM employees
+WHERE city = 'Pune'
+AND age < 30;
+
+-- 40
+SELECT * FROM employees
+WHERE gender = 'Female'
+ORDER BY salary DESC;
