@@ -1,249 +1,185 @@
-CREATE DATABASE sql_practice;
-USE sql_practice;
+create database sql_practice;
 
-CREATE TABLE employees (
-    employee_id INT PRIMARY KEY,
-    employee_name VARCHAR(50),
-    age INT,
-    gender VARCHAR(10),
-    department VARCHAR(30),
-    salary DECIMAL(10,2),
-    city VARCHAR(30),
-    joining_date DATE
+use sql_practice;
+
+create table employees (
+employee_id int primary key,
+employee_name varchar(50),
+age int,
+gender varchar(10),
+department varchar(30),
+salary decimal(10,2),
+city varchar(30),
+joining_date date
 );
 
-INSERT INTO employees VALUES
-(101,'Amit',25,'Male','IT',45000,'Pune','2022-01-15'),
-(102,'Priya',28,'Female','HR',52000,'Mumbai','2021-03-10'),
-(103,'Rahul',30,'Male','Finance',65000,'Pune','2020-07-20'),
-(104,'Sneha',27,'Female','IT',58000,'Nashik','2023-02-18'),
-(105,'Karan',35,'Male','Sales',72000,'Nagpur','2019-09-05'),
-(106,'Neha',26,'Female','Marketing',48000,'Pune','2022-11-12'),
-(107,'Rohit',31,'Male','HR',55000,'Mumbai','2020-05-25'),
-(108,'Pooja',29,'Female','Finance',69000,'Nashik','2021-12-08'),
-(109,'Vikas',33,'Male','Sales',80000,'Pune','2018-06-30'),
-(110,'Anjali',24,'Female','IT',42000,'Aurangabad','2023-08-14');
+insert into employees values
+(101,'amit',25,'male','it',45000,'pune','2022-01-15'),
+(102,'priya',28,'female','hr',52000,'mumbai','2021-03-10'),
+(103,'rahul',30,'male','finance',65000,'pune','2020-07-20'),
+(104,'sneha',27,'female','it',58000,'nashik','2023-02-18'),
+(105,'karan',35,'male','sales',72000,'nagpur','2019-09-05'),
+(106,'neha',26,'female','marketing',48000,'pune','2022-11-12'),
+(107,'rohit',31,'male','hr',55000,'mumbai','2020-05-25'),
+(108,'pooja',29,'female','finance',69000,'nashik','2021-12-08'),
+(109,'vikas',33,'male','sales',80000,'pune','2018-06-30'),
+(110,'anjali',24,'female','it',42000,'aurangabad','2023-08-14');
 
-SELECT * FROM employees;
+select * from employees;
 
--- SQL BASICS PRACTICE
--- Author : Vaishnavi Gavade
+select * from employees;
 
--- 1.Display all employee records
-SELECT *FROM employees;
+select employee_name
+from employees;
 
--- Question 2
--- Display employee names
-SELECT employee_name
-FROM employees;
+select employee_name, salary
+from employees;
 
--- Question3
--- Display employee name and salary
-SELECT employee_name, salary
-FROM employees;
+select distinct department
+from employees;
 
--- Question 4
--- Display unique departments
-SELECT DISTINCT department
-FROM employees;
+select distinct city
+from employees;
 
--- Question 5
--- Display unique cities
-SELECT DISTINCT city
-FROM employees;
--- distinct used to represent unique values
+select *
+from employees
+where salary > 50000;
 
+select *
+from employees
+where salary < 60000;
 
--- Question 6
--- Display employees whose salary is greater than 50000
-SELECT *
-FROM employees
-WHERE salary > 50000;
+select *
+from employees
+where department = 'it';
 
--- Question 7
--- Display employees whose salary is less than 60000
-SELECT *FROM employees
-WHERE salary < 60000;
+select *
+from employees
+where city = 'pune';
 
+select *
+from employees
+where gender = 'female';
 
+select *
+from employees
+where age > 28;
 
--- Question 8
--- Display employees from IT department
-SELECT *FROM employees
-WHERE department = 'IT';
+select *
+from employees
+where salary between 45000 and 70000;
 
--- Question 9
--- Display employees from Pune
-SELECT *
-FROM employees
-WHERE city = 'Pune';
+select *
+from employees
+where age between 25 and 30;
 
--- Question 10
--- Display female employees
-SELECT *
-FROM employees
-WHERE gender = 'Female';
+select *
+from employees
+where department in ('hr','finance');
 
+select *
+from employees
+where department <> 'it';
 
--- Question11
--- Display employees whose age is greater than 28
-SELECT *
-FROM employees
-WHERE age > 28;
+select *
+from employees
+order by salary desc;
 
--- Question 12
--- Display employees whose salary is between 45000 and 70000
-SELECT *
-FROM employees
-WHERE salary BETWEEN 45000 AND 70000;
+select *
+from employees
+order by employee_name asc;
 
+select *
+from employees
+limit 5;
 
--- Question 13
--- Display employees whose age is between 25 and 30
-SELECT *
-FROM employees
-WHERE age BETWEEN 25 AND 30;
+select *
+from employees
+order by salary desc
+limit 3;
 
--- Question 14
--- Display employees whose department is HR or Finance
-SELECT *
-FROM employees
-WHERE department IN ('HR','Finance');
+select *
+from employees
+order by joining_date;
 
+select *
+from employees
+where salary > 50000;
 
--- Question 15
--- Display employees not working in IT
-SELECT *
-FROM employees
-WHERE department <> 'IT';
+select employee_name, salary
+from employees
+where department = 'it';
 
--- Question 16
--- Display employees ordered by salary (Highest to Lowest)
-SELECT *
-FROM employees
-ORDER BY salary DESC;
+select *
+from employees
+where age between 25 and 30;
 
--- Question 17
--- Display employees ordered by employee name
-SELECT *
-FROM employees
-ORDER BY employee_name ASC;
+select *
+from employees
+where city = 'mumbai';
 
+select employee_name
+from employees
+order by employee_name asc;
 
--- Question 18
--- Display top 5 employees
-SELECT *
-FROM employees
-LIMIT 5;
+select *
+from employees
+order by salary desc;
 
+select *
+from employees
+order by salary desc
+limit 5;
 
--- Question 19
--- Display top 3 highest paid employees
-SELECT *
-FROM employees
-ORDER BY salary DESC
-LIMIT 3;
+select *
+from employees
+where employee_name like 's%';
 
--- Question 20
--- Display employees ordered by joining date
-SELECT *
-FROM employees
-ORDER BY joining_date;
+select *
+from employees
+where employee_name like '%a';
 
+select *
+from employees
+where employee_name like '%n%';
 
--- 21
-SELECT *
-FROM employees
-WHERE salary > 50000;
+select *
+from employees
+where department in ('hr','finance');
 
--- 22
-SELECT employee_name, salary
-FROM employees
-WHERE department = 'IT';
+select *
+from employees
+where city <> 'pune';
 
--- 23
-SELECT *
-FROM employees
-WHERE age BETWEEN 25 AND 30;
+select *
+from employees
+where salary not between 40000 and 60000;
 
--- 24
-SELECT *
-FROM employees
-WHERE city = 'Mumbai';
+select distinct city
+from employees;
 
--- 25
-SELECT employee_name
-FROM employees
-ORDER BY employee_name ASC;
+select employee_name, department, salary
+from employees;
 
--- 26
-SELECT *
-FROM employees
-ORDER BY salary DESC;
+select *
+from employees
+where joining_date > '2023-01-01';
 
--- 27
-SELECT *
-FROM employees
-ORDER BY salary DESC
-LIMIT 5;
+select *
+from employees
+order by joining_date desc;
 
--- 28
-SELECT *
-FROM employees
-WHERE employee_name LIKE 'S%';
+select *
+from employees
+where salary > 45000
+and department = 'it';
 
--- 29
-SELECT *
-FROM employees
-WHERE employee_name LIKE '%a';
+select *
+from employees
+where city = 'pune'
+and age < 30;
 
--- 30
-SELECT *
-FROM employees
-WHERE employee_name LIKE '%n%';
-
--- 31
-SELECT *
-FROM employees
-WHERE department IN ('HR', 'Finance');
-
--- 32
-SELECT *
-FROM employees
-WHERE city <> 'Pune';
-
--- 33
-SELECT *FROM employees
-WHERE salary NOT BETWEEN 40000 AND 60000;
-
--- 34
-SELECT DISTINCT city
-FROM employees;
-
--- 35
-SELECT employee_name, department, salary
-FROM employees;
-
--- 36
-SELECT *
-FROM employees
-WHERE joining_date > '2023-01-01';
-
--- 37
-SELECT *FROM employees
-ORDER BY joining_date DESC;
-
--- 38
-SELECT *FROM employees
-WHERE salary > 45000
-AND department = 'IT';
-
--- 39
-SELECT *FROM employees
-WHERE city = 'Pune'
-AND age < 30;
-
--- 40
-SELECT * FROM employees
-WHERE gender = 'Female'
-ORDER BY salary DESC;
+select *
+from employees
+where gender = 'female'
+order by salary desc;
