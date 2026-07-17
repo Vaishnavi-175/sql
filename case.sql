@@ -304,7 +304,97 @@ end as bonus_status
 from employees_case_practice e2;             
 
 
+select *,
+ case
+ when salary > ( select avg(salary) from employees_case_practice) and
+	  salary > (select avg(salary) from employees_case_practice e2 
+                where e1.dept_name = e2.dept_name) then 'Promoted'
+when salary > (select avg(salary) from employees_case_practice e2
+                where e1.dept_name = e2.dept_name) then 'Under Review'
+when salary = (select avg(salary) from employees_case_practice e2
+               where e1.dept_name = e2.dept_name) then 'Stable'
+else 'Need Improvement'
+end as promotion_status
+from employees_case_practice e1;  
 
+select *,
+case
+when salary = (select max(salary) from employees_case_practice ) then '50% bonus'
+when salary = (select max(salary) from employees_case_practice e2
+               where e1.dept_name = e2.dept_name) then '30 % bonus'
+when salary > (select avg(salary) from employees_case_practice e2
+			  where e1.dept_name = e2.dept_name) then '20% bonus'
+when salary >(select avg(salary) from employees_case_practice) then '10% bonus'
+else 'no bonus'
+end as bonus_status
+from employees_case_practice e1;  
+
+
+select *,
+case
+when salary = (select max(salary) from employees_case_practice) then 'Outstanding'
+when salary = (select min(salary) from employees_case_practice) then 'Poor'
+when salary = (select max(salary) from employees_case_practice e2
+			  where e1.dept_name = e2.dept_name) and
+     salary > (select avg(salary) from employees_case_practice) then 'Excellent'
+when salary > (select avg(salary) from employees_case_practice) and
+     salary > (select avg(salary) from employees_case_practice e2
+               where e1.dept_name = e2.dept_name) then 'Very Good'
+when salary > (select avg(salary) from employees_case_practice e2
+              where e1.dept_name = e2.dept_name) then 'Good'               
+else 'Need Training'
+end as   performance_level
+from  employees_case_practice e1;         
+
+
+select * ,
+case
+when salary between (select avg(salary) from employees_case_practice) and
+                     (select max(salary) from employees_case_practice) then 'Premium Zone'
+when salary between (select avg(salary) from employees_case_practice e2
+					where e1.dept_name = e2.dept_name) and
+                    (select avg(salary) from employees_case_practice) then 'Growth Zone'
+when salary between (select min(salary) from employees_case_practice ) and 
+                    (select avg(salary) from employees_case_practice e2
+                    where e1.dept_name = e2.dept_name) then 'Learning Zone'
+else 'Unknown Zone'
+end as salary_zone
+from employees_case_practice e1;
+				
+select *,
+case
+when salary = (select max(salary) from employees_case_practice) then ' Flag A'
+when salary = (select max(salary) from  employees_case_practice e2
+               where e1.dept_name = e2.dept_name) then 'Flag B'
+when salary = (select avg(salary) from employees_case_practice) then 'Flag C'
+when salary = (select avg(salary) from employees_case_practice e2
+			   where e1.dept_name = e2.dept_name) then 'Flag D'
+when salary > (select avg(salary) from employees_case_practice) then 'Flag E'
+when salary > (select avg(salary) from employees_case_practice e2
+               where e1.dept_name = e2.dept_name) then 'Flag F'
+else 'Flag G'
+end as employee_flag 
+from employees_case_practice e1;               
+
+
+select *,
+case
+when salary = (select max(salary) from employees_case_practice) then ' S+'
+when salary = (select min(salary) from employees_case_practice) then ' F '
+when salary = (select max(salary) from  employees_case_practice e2
+               where e1.dept_name = e2.dept_name) and
+	 salary > (select avg(salary) from employees_case_practice) then 'A+' 
+when salary > (select avg(salary) from employees_case_practice) and
+     salary > (select avg(salary) from  employees_case_practice e2
+               where e1.dept_name = e2.dept_name) then 'A'
+when  salary > (select avg(salary) from  employees_case_practice e2
+               where e1.dept_name = e2.dept_name) then 'B' 
+when salary between (select min(salary) from employees_case_practice) and
+     salary = (select avg(salary) from employees_case_practice e2
+                where e1.dept_name = e2.dept_name) then 'C'
+else 'D'
+end as employee_grade
+from employees_case_practice e1;         
 
 
 
