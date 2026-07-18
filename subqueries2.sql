@@ -262,3 +262,318 @@ group by department
 order by avg(salary)
 limit 1
 );
+
+
+select *
+from employees_advanced
+where salary>
+(
+select avg(salary)
+from employees_advanced
+where department in
+(
+select department
+from employees_advanced
+group by department
+having count(*)>2
+)
+);
+
+select *
+from employees_advanced e
+where salary=
+(
+select max(salary)
+from employees_advanced
+where department=e.department
+)
+and age<
+(
+select avg(age)
+from employees_advanced
+);
+
+select *
+from employees_advanced
+where city in
+(
+select city
+from employees_advanced
+group by city
+having avg(salary)>
+(
+select avg(salary)
+from employees_advanced
+)
+);
+
+select *
+from employees_advanced
+where salary>all
+(
+select salary
+from employees_advanced
+where department=
+(
+select department
+from employees_advanced
+group by department
+order by avg(salary)
+limit 1
+));
+
+select *
+from employees_advanced
+where employee_id in
+(
+select employee_id
+from employees_advanced
+where salary=
+(
+select max(salary)
+from employees_advanced
+)
+or age=
+(
+select min(age)
+from employees_advanced
+)
+);
+
+
+select *
+from employees_advanced e
+where age=
+(
+select max(age)
+from employees_advanced
+where department=e.department
+)
+and salary>
+(
+select avg(salary)
+from employees_advanced
+);
+
+select *
+from employees_advanced
+where department in
+(
+select department
+from employees_advanced
+group by department
+having sum(salary)>
+(
+select avg(total)
+from
+(
+select sum(salary) total
+from employees_advanced
+group by department
+)x
+)
+);
+
+
+select *
+from employees_advanced
+where salary<
+(
+select min(salary)
+from employees_advanced
+where city='pune'
+);
+
+select *
+from employees_advanced
+where city=
+(
+select city
+from employees_advanced
+group by city
+order by count(*) desc
+limit 1
+)
+and salary>
+(
+select avg(salary)
+from employees_advanced
+);
+
+select *
+from employees_advanced e
+where salary=
+(
+select max(salary)
+from employees_advanced
+where city=e.city
+)
+and age=
+(
+select min(age)
+from employees_advanced
+where city=e.city
+);
+
+
+select *
+from employees_advanced
+where department not in
+(
+select department
+from employees_advanced
+where salary=
+(
+select max(salary)
+from employees_advanced
+)
+);
+
+select *
+from employees_advanced
+where salary>any
+(
+select salary
+from employees_advanced
+where department='finance'
+)
+and age<all
+(
+select age
+from employees_advanced
+where city='mumbai'
+);
+
+select *
+from employees_advanced
+where salary=
+(
+select max(salary)
+from employees_advanced
+where salary<
+(
+select max(salary)
+from employees_advanced
+where salary<
+(
+select max(salary)
+from employees_advanced
+)
+)
+);
+
+select *
+from employees_advanced
+where city in
+(
+select city
+from employees_advanced
+group by city
+having count(*)=
+(
+select max(cnt)
+from
+(
+select count(*) cnt
+from employees_advanced
+group by city
+)y
+)
+);
+
+select *
+from employees_advanced e
+where salary>
+(
+select avg(salary)
+from employees_advanced
+where department=e.department
+)
+and age<
+(
+select avg(age)
+from employees_advanced
+where department=e.department
+);
+
+
+select *
+from employees_advanced
+where department=
+(
+select department
+from employees_advanced
+group by department
+order by sum(salary) desc
+limit 1
+)
+and salary<
+(
+select avg(salary)
+from employees_advanced
+);
+
+select *
+from employees_advanced
+where employee_id not in
+(
+select employee_id
+from employees_advanced
+where city='pune'
+)
+and salary>
+(
+select min(salary)
+from employees_advanced
+);
+
+
+select *
+from employees_advanced
+where salary=
+(
+select min(salary)
+from employees_advanced
+where salary>
+(
+select avg(salary)
+from employees_advanced
+)
+);
+
+select *
+from employees_advanced e
+where age=
+(
+select max(age)
+from employees_advanced
+where city=e.city
+)
+and salary=
+(
+select min(salary)
+from employees_advanced
+where department=e.department
+);
+
+
+select *
+from employees_advanced
+where department in
+(
+select department
+from employees_advanced
+group by department
+having avg(salary)>
+(
+select avg(salary)
+from employees_advanced
+)
+)
+and city in
+(
+select city
+from employees_advanced
+group by city
+having count(*)>1
+);
